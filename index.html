@@ -370,11 +370,16 @@
         </header>
 
         <!-- Portrait Image -->
-        <div class="photo-container">
+        <div class="photo-container" style="position: relative;">
+            <!-- Music Toggle Button Placed Here-->
+    <button class="music-toggle" id="musicToggle" title="Play/Pause Background Melody" style="position: absolute; top: 0; right: 10px; z-index: 10;">
+        <i id="musicIcon" class="fa-solid fa-music"></i>
+    </button>
             <div class="photo-frame">
                 <!-- Replace src with your loved one's photo URL or filename -->
                 <img src="portrait.jpg" alt="Memorial Portrait">
             </div>
+        </div>
         </div>
 
         <!-- Verse / Tribute Note -->

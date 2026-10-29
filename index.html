@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Loving Memory - 40th Day Commemoration</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #fcfbfa;
+            --card-bg: #ffffff;
+            --text-main: #2c2c2c;
+            --text-muted: #666666;
+            --accent: #b89753; /* Warm gold */
+            --accent-light: #f7f3ed;
+            --border-color: #e6e1db;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Music Control Button */
+        .music-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--accent);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.05);
+            background: var(--accent-light);
+        }
+
+        /* Container */
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 40px 0 20px 0;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .memorial-tag {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .dates {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Portrait Frame */
+        .photo-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 35px auto;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(135deg, var(--accent), #e2cca7);
+            box-shadow: 0 10px 30px rgba(184, 151, 83, 0.2);
+        }
+
+        .photo--container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 35px auto;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(135deg, var(--accent), #e2cca7);
+            box-shadow: 0 10px 30px rgba(184, 151, 83, 0.2);
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+			object-position: center;
+        }
+
+        /* Verse Card */
+        .verse-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 35px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .verse-card p {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .verse-ref {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            margin: 8px auto 0 auto;
+        }
+
+        /* Schedule Details */
+        .event-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .event-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .event-icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+            min-width: 35px;
+            margin-top: 3px;
+        }
+
+        .event-details h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .event-details p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid var(--accent);
+            padding: 5px 12px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .map-btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Virtual Candle Section */
+        .candle-section {
+            text-align: center;
+            background: var(--accent-light);
+            border: 1px solid #e8decb;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .candle-icon {
+            font-size: 2.5rem;
+            color: #d4a337;
+            margin-bottom: 15px;
+            animation: flicker 2s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.08); text-shadow: 0 0 15px rgba(212, 163, 55, 0.6); }
+        }
+
+        .candle-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-family: var(--font-sans);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 15px;
+        }
+
+        .candle-btn:hover {
+            background: #a28247;
+        }
+
+        /* RSVP Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            background: #faf9f7;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: #fff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent);
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #2e7d32;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Music Toggle (Optional Audio) -->
+    <button class="music-toggle" id="musicToggle" title="Play/Pause Background Melody">
+        <i class="fa-solid fa-music" id="musicIcon"></i>
+    </button>
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=gentle-piano-111166.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="memorial-tag">......</div>
+            <h1>JOSE JUDE "JOJO' 'JOYAP" A. YAPIT</h1>
+            <p class="dates"> November 18, 2026 | (Time) &bull; Oblation lounge, University Hotel </p>
+        </header>
+
+        <!-- Portrait Image -->
+        <div class="photo-container">
+            <div class="photo-frame">
+                <!-- Replace src with your loved one's photo URL or filename -->
+                <img src="portrait.jpg" alt="Memorial Portrait">
+            </div>
+        </div>
+
+        <!-- Verse / Tribute Note -->
+        <div class="verse-card">
+            <p>"Those we love don't go away, they walk beside us every day. Unseen, unheard, but always near, still loved, still missed and very dear."</p>
+            <div class="verse-ref">Celebrating the 40th Day</div>
+        </div>
+
+        <!-- Schedule Section -->
+        <div class="section-card">
+            <h2 class="section-title">Commemoration Schedule</h2>
+            
+            <div class="event-item">
+                <div class="event-icon"><i class="fa-solid fa-church"></i></div>
+                <div class="event-details">
+                    <h3>Memorial Mass & Novena</h3>
+                    <p><strong>Date:</strong> Saturday, November 21, 2026<br><strong>Time:</strong> 2:00 PM<br>St. Jude Parish Church, City Name</p>
+                    <a href="https://maps.google.com" target="_blank" class="map-btn"><i class="fa-solid fa-location-dot"></i> Open in Google Maps</a>
+                </div>
+            </div>
+
+            <hr style="border:0; border-top:1px solid var(--border-color); margin: 20px 0;">
+
+            <div class="event-item">
+                <div class="event-icon"><i class="fa-solid fa-utensils"></i></div>
+                <div class="event-details">
+                    <h3>Reception & Fellowship</h3>
+                    <p><strong>Time:</strong> Immediately following the Mass<br>Social Hall, St. Jude Parish Compound</p>
+                    <a href="https://maps.google.com" target="_blank" class="map-btn"><i class="fa-solid fa-location-dot"></i> Open in Google Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Virtual Candle Lighting -->
+        <div class="candle-section">
+            <div class="candle-icon"><i class="fa-solid fa-candle-holder"></i></div>
+            <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 8px;">Light a Virtual Candle</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Join family and friends in offering a quiet prayer.</p>
+            <p style="font-size: 0.85rem; font-weight: 600; color: var(--accent);"><span id="candleCount">48</span> candles lit</p>
+            <button class="candle-btn" id="lightCandleBtn">Light a Candle</button>
+        </div>
+
+        <!-- RSVP / Message Form -->
+        <div style="text-align: center; padding: 10px 0;">
+    <p style="color: var(--text-muted); margin-bottom: 20px;">Please click the button below to confirm your attendance and leave a message.</p>
+    <a href="https://forms.gle/mcndVKUicxUQdtXNA" target="_blank" class="candle-btn" style="display: inline-block; text-decoration: none; padding: 14px 28px; font-size: 1rem;">
+        <i class="fa-solid fa-pen-to-square"></i> Open RSVP Form
+    </a>
+</div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Forever cherished in our hearts.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript functionality -->
+    <script>
+        /* Ambient Music Control */
+        const musicToggle = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
+
+        musicToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.className = "fa-solid fa-music";
+                musicToggle.style.background = "var(--card-bg)";
+            } else {
+                bgMusic.play().catch(e => console.log("Audio play blocked:", e));
+                musicIcon.className = "fa-solid fa-volume-high";
+                musicToggle.style.background = "var(--accent-light)";
+            }
+            isPlaying = !isPlaying;
+        });
+
+        /* Virtual Candle Counter */
+        const lightCandleBtn = document.getElementById('lightCandleBtn');
+        const candleCountSpan = document.getElementById('candleCount');
+        let lit = false;
+
+        lightCandleBtn.addEventListener('click', () => {
+            if (!lit) {
+                let currentCount = parseInt(candleCountSpan.textContent);
+                candleCountSpan.textContent = currentCount + 1;
+                lightCandleBtn.textContent = "Candle Lit. Thank You.";
+                lightCandleBtn.style.background = "#666";
+                lit = true;
+            }
+        });
+
+        /* RSVP Form Submission simulation */
+        const rsvpForm = document.getElementById('rsvpForm');
+        const successMessage = document.getElementById('successMessage');
+
+        rsvpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            rsvpForm.style.display = 'none';
+            successMessage.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

@@ -477,5 +477,30 @@
             successMessage.style.display = 'block';
         });
     </script>
+    <!-- Rest of your website content... -->
+
+    <!-- JavaScript functionality -->
+    <script>
+        /* Ambient Music Control */
+        const musicToggle = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
+
+        musicToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.className = "fa-solid fa-music";
+                musicToggle.style.background = "var(--card-bg)";
+            } else {
+                bgMusic.play().catch(e => console.log("Audio play blocked:", e));
+                musicIcon.className = "fa-solid fa-volume-high";
+                musicToggle.style.background = "var(--accent-light)";
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>
